@@ -1,6 +1,6 @@
 {
   "name": "sucklessdb",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
@@ -40,6 +40,7 @@
     "@angular/build": "20.2.1",
     "@angular/cli": "20.2.1",
     "@angular/compiler-cli": "20.2.0",
+    "@tauri-apps/cli": "^2.8.3",
     "@types/jasmine": "5.1.0",
     "jasmine-core": "5.9.0",
     "karma": "6.4.0",
