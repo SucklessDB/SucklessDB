@@ -13,7 +13,7 @@
     "windows": [
       {
         "title": "SucklessDB",
-        "width": 1024,
+        "width": 1200,
         "height": 900,
         "resizable": true,
         "fullscreen": false
