@@ -12,6 +12,6 @@ export class LayoutComponent implements OnInit {
     private toastService = inject(ToastService);
 
     public ngOnInit() {
-        this.toastService.toast('alert-info', 'Welcome in SucklessDB', 3000);
+        this.toastService.toast('alert-info', 'Welcome in SucklessDB', 10_000);
     }
 }
