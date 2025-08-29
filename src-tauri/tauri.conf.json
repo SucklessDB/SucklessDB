@@ -2,9 +2,9 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "SucklessDB",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.sucklessdb.dev",
   "build": {
-    "frontendDist": "../dist/SucklessDB/browser",
+    "frontendDist": "../dist/Sucklessdb/browser",
     "devUrl": "http://localhost:4200",
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build"
@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "SucklessDB",
-        "width": 800,
-        "height": 600,
+        "width": 1024,
+        "height": 900,
         "resizable": true,
         "fullscreen": false
       }
