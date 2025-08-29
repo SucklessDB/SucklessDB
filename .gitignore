@@ -11,15 +11,6 @@
 npm-debug.log
 yarn-error.log
 
-# Yarn
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
 # IDEs and editors
 .idea/
 .project
@@ -28,7 +19,6 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
-.zed/
 
 # Visual Studio Code
 .vscode/*

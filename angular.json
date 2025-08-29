@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SucklessDB": {
+    "Sucklessdb": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -23,12 +23,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -58,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SucklessDB:build:production"
+              "buildTarget": "Sucklessdb:build:production"
             },
             "development": {
-              "buildTarget": "SucklessDB:build:development"
+              "buildTarget": "Sucklessdb:build:development"
             }
           },
           "defaultConfiguration": "development"

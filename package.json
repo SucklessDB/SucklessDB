@@ -1,13 +1,12 @@
 {
-  "name": "suckless-db",
+  "name": "sucklessdb",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:SucklessDB": "node dist/SucklessDB/server/server.mjs"
+    "test": "ng test"
   },
   "prettier": {
     "printWidth": 100,
@@ -21,17 +20,19 @@
       }
     ]
   },
-  "private": true,
+  "engines": {
+    "node": "24.5.0",
+    "npm": "please-use-pnpm"
+  },
+  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
+  "private": false,
   "dependencies": {
     "@angular/common": "20.2.0",
     "@angular/compiler": "20.2.0",
     "@angular/core": "20.2.0",
     "@angular/forms": "20.2.0",
     "@angular/platform-browser": "20.2.0",
-    "@angular/platform-server": "20.2.0",
     "@angular/router": "20.2.0",
-    "@angular/ssr": "20.2.1",
-    "express": "5.1.0",
     "rxjs": "7.8.0",
     "tslib": "2.3.0"
   },
@@ -39,9 +40,7 @@
     "@angular/build": "20.2.1",
     "@angular/cli": "20.2.1",
     "@angular/compiler-cli": "20.2.0",
-    "@types/express": "5.0.1",
     "@types/jasmine": "5.1.0",
-    "@types/node": "24.3.0",
     "jasmine-core": "5.9.0",
     "karma": "6.4.0",
     "karma-chrome-launcher": "3.2.0",
@@ -49,10 +48,5 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "typescript": "5.9.2"
-  },
-  "engines": {
-    "node": "24.5.0",
-    "npm": "please-use-pnpm"
-  },
-  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b"
+  }
 }
