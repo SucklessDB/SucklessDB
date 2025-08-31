@@ -7,13 +7,13 @@ Lightweight, fast and easy to use database client.
 
 ## Development
 
-1. Clone and enter the repository
+1. Clone the repository
 ```bash
 git clone git@github.com:SucklessDB/SucklessDB.git
 cd SucklessDB
 ```
 2. Make sure you have available [pnpm](https://pnpm.io/installation) package manager.
-3. Install ust toolchain from [rustup](https://rustup.rs/).
+3. Install Rust toolchain from [rustup](https://rustup.rs/).
 4. Install dependencies
 ```bash
 pnpm Install
