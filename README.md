@@ -13,7 +13,7 @@ git clone git@github.com:SucklessDB/SucklessDB.git
 cd SucklessDB
 ```
 2. Make sure you have available [pnpm](https://pnpm.io/installation) package manager.
-3. Install Rust toolchain from [rustup](https://rustup.rs/).
+3. Prerequisites for Tauri [](https://v2.tauri.app/start/prerequisites/)
 4. Install dependencies
 ```bash
 pnpm Install
