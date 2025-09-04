@@ -6,8 +6,8 @@
     "build": {
         "frontendDist": "../dist/Sucklessdb/browser",
         "devUrl": "http://localhost:4200",
-        "beforeDevCommand": "pnpm dev",
-        "beforeBuildCommand": "pnpm build"
+        "beforeDevCommand": "pnpm fe:dev",
+        "beforeBuildCommand": "pnpm fe:build"
     },
     "app": {
         "windows": [

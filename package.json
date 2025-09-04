@@ -2,11 +2,13 @@
     "name": "sucklessdb",
     "version": "0.1.0",
     "scripts": {
-        "ng": "ng",
-        "dev": "ng serve",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "fe:ng": "ng",
+        "fe:dev": "ng serve",
+        "fe:build": "ng build",
+        "fe:watch": "ng build --watch --configuration development",
+        "fe:test": "ng test",
+        "dev": "tauri dev",
+        "build": "tauri build"
     },
     "prettier": {
         "printWidth": 100,

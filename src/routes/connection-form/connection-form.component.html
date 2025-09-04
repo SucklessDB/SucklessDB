@@ -6,9 +6,14 @@
 
         <div class="card-body">
             <h2 class="card-title">Connect to database</h2>
-            ...
 
-            <div class="card-actions justify-end">
+            @for(connection of connections(); track connection) {
+                <div>
+                    <span>{{ connection.name }}</span>
+                </div>
+            }
+
+            <div class="card-actions justify-end" (click)="add()">
                 <button class="btn btn-primary">Connect</button>
             </div>
         </div>
