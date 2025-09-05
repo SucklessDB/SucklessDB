@@ -1,6 +1,6 @@
 import { Component, inject, signal } from "@angular/core";
 import { ConnectionStorageService } from "@/services/connection-storage.service";
-import { DatabaseDefinition } from "@/types/bindings";
+import { DatabaseDefinition } from "@/backend/bindings";
 
 @Component({
     selector: 'connection-form',

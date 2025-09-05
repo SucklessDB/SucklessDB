@@ -13,7 +13,7 @@
         "target": "ES2022",
         "module": "preserve",
         "paths": {
-            "@/types/*": ["./types/*"],
+            "@/backend/*": ["./backend/*"],
             "@/*": ["./src/*"]
         },
     },

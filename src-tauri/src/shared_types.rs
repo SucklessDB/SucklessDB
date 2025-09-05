@@ -16,7 +16,7 @@ pub fn export_types() -> Builder<tauri::Wry> {
 
     #[cfg(debug_assertions)]
     builder
-        .export(Typescript::default(), "../types/bindings.ts")
+        .export(Typescript::default(), "../backend/bindings.ts")
         .expect("Failed to export typescript bindings");
 
     builder

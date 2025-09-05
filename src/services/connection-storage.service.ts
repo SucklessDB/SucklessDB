@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { load, Store } from '@tauri-apps/plugin-store';
 import { v4 as uuid } from 'uuid';
-import { DatabaseDefinition } from '@/types/bindings';
+import { DatabaseDefinition } from '@/backend/bindings';
 
 @Injectable({ providedIn: 'root' })
 export class ConnectionStorageService {
