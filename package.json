@@ -7,8 +7,8 @@
         "fe:build": "ng build",
         "fe:watch": "ng build --watch --configuration development",
         "fe:test": "ng test",
-        "dev": "tauri dev",
-        "build": "tauri build"
+        "dev": "CARGO_TARGET_DIR=target tauri dev",
+        "build": "CARGO_TARGET_DIR=target tauri build"
     },
     "prettier": {
         "printWidth": 100,
@@ -35,6 +35,7 @@
         "@angular/forms": "20.2.0",
         "@angular/platform-browser": "20.2.0",
         "@angular/router": "20.2.0",
+        "@tauri-apps/api": "^2.8.0",
         "@tauri-apps/plugin-store": "~2.4.0",
         "@tauri-apps/plugin-stronghold": "~2.3.0",
         "rxjs": "7.8.0",

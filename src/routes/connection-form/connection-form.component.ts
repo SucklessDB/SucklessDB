@@ -1,5 +1,6 @@
 import { Component, inject, signal } from "@angular/core";
-import { ConnectionDefinition, ConnectionStorageService } from "../../services/connection-storage.service";
+import { ConnectionStorageService } from "@/services/connection-storage.service";
+import { DatabaseDefinition } from "@/types/bindings";
 
 @Component({
     selector: 'connection-form',
@@ -9,13 +10,13 @@ import { ConnectionDefinition, ConnectionStorageService } from "../../services/c
 export class ConnectionFormComponent {
     private connectionService = inject(ConnectionStorageService);
 
-    public connections = signal<ConnectionDefinition[]>([]);
+    public connections = signal<DatabaseDefinition[]>([]);
 
     public async add() {
-        await this.connectionService.addConnection({
-            name: 'test',
-            isProduction: false,
-        });
+        // await this.connectionService.addConnection({
+        //     name: 'test',
+        //     is_production: false,
+        // });
 
         this.loadConnections();
     }

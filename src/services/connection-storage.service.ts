@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core";
 import { load, Store } from '@tauri-apps/plugin-store';
 import { v4 as uuid } from 'uuid';
-
-export interface ConnectionDefinition {
-    name: string;
-    isProduction: boolean;
-}
+import { DatabaseDefinition } from '@/types/bindings';
 
 @Injectable({ providedIn: 'root' })
 export class ConnectionStorageService {
@@ -15,7 +11,7 @@ export class ConnectionStorageService {
         this.store = await load('connections.json');
     }
 
-    public async addConnection(connection: ConnectionDefinition) {
+    public async addConnection(connection: DatabaseDefinition) {
         if (!this.store) {
             return;
         }
@@ -24,7 +20,7 @@ export class ConnectionStorageService {
         await this.store.save();
     }
 
-    public async getConnections(): Promise<ConnectionDefinition[]> {
+    public async getConnections(): Promise<DatabaseDefinition[]> {
         if (!this.store) {
             return [];
         }
