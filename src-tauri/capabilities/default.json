@@ -7,7 +7,6 @@
   ],
   "permissions": [
     "core:default",
-    "store:default",
-    "stronghold:default"
+    "store:default"
   ]
 }
