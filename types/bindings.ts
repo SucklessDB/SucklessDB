@@ -18,7 +18,7 @@ export const commands = {
 
 /** user-defined types **/
 
-export type DatabaseDefinition = { name: string; is_production: boolean; db_type: DatabaseType; host: string; port: number; username: string; password: string; database_name: string }
+export type DatabaseDefinition = { name: string; is_production: boolean; db_type: DatabaseType; host: string; port: number; username: string; password_reference: string; database_name: string }
 export type DatabaseType = "Mysql" | "Postgres"
 
 /** tauri-specta globals **/

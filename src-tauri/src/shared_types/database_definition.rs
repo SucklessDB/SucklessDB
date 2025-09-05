@@ -15,6 +15,6 @@ pub struct DatabaseDefinition {
     pub host: String,
     pub port: u16,
     pub username: String,
-    pub password: String,
+    pub password_reference: String,
     pub database_name: String,
 }
