@@ -8,8 +8,11 @@
             <h2 class="card-title">Connect to database</h2>
 
             @for(connection of connections(); track connection) {
-                <div>
+                <div class="flex flex-row p-2 bg-amber-700">
                     <span>{{ connection.name }}</span>
+                    @if(connection.password_reference) {
+                        <span>{{ connection.password_reference }}</span>
+                    }
                 </div>
             }
 

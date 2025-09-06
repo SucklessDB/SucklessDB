@@ -1,8 +1,10 @@
+mod specta_builder;
 mod shared_types;
+mod commands;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let builder = shared_types::export_types();
+    let builder = specta_builder::get_builder();
 
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::new().build())
