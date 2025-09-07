@@ -8,7 +8,7 @@ pub enum DatabaseType {
 }
 
 #[derive(Serialize, Deserialize, Type)]
-pub struct DatabaseDefinition {
+pub struct DatabaseDefinitionBase {
     pub name: String,
     pub is_production: bool,
     pub db_type: DatabaseType,

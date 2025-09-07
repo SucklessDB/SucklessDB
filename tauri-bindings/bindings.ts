@@ -23,7 +23,7 @@ async getPassword(id: string) : Promise<string> {
 
 /** user-defined types **/
 
-export type DatabaseDefinition = { name: string; is_production: boolean; db_type: DatabaseType; host: string; port: number; username: string; database_name: string }
+export type DatabaseDefinitionBase = { name: string; is_production: boolean; db_type: DatabaseType; host: string; port: number; username: string; database_name: string }
 export type DatabaseType = "Mysql" | "Postgres"
 
 /** tauri-specta globals **/

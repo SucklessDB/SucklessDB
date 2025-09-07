@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from "@angular/core";
-import { ConnectionStorageService } from "@/services/connection-storage.service";
-import { DatabaseDefinition } from "@/backend/bindings";
+import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import { ConnectionStorageService, DatabaseDefinition } from "@/services/connection-storage.service";
 
 @Component({
     selector: 'connection-form',
@@ -14,8 +13,6 @@ export class ConnectionFormComponent {
     public connections = signal<DatabaseDefinition[]>([]);
 
     public async add() {
-        await this.connectionService.addConnection();
-
         this.loadConnections();
     }
 
@@ -26,9 +23,5 @@ export class ConnectionFormComponent {
     private async loadConnections() {
         const connections = await this.connectionService.getConnections();
         this.connections.set(connections);
-    }
-
-    public async getPassword(id: string) {
-        return await this.connectionService.getPassword(id);
     }
 }

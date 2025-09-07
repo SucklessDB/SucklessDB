@@ -1,9 +1,17 @@
 import { Injectable } from "@angular/core";
 import { load, Store } from '@tauri-apps/plugin-store';
 import { v4 as uuid } from 'uuid';
-import { DatabaseDefinition, commands } from '@/backend/bindings';
+import { DatabaseDefinitionBase, commands } from '@tauri-bindings';
 
 export const CONNECTIONS_STORAGE = 'connections.json';
+
+export interface DatabaseConnectionCreate extends DatabaseDefinitionBase {
+    password: string;
+}
+
+export interface DatabaseDefinition extends DatabaseDefinitionBase {
+    id: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ConnectionStorageService {
@@ -13,40 +21,28 @@ export class ConnectionStorageService {
         this.store = await load(CONNECTIONS_STORAGE, { autoSave: false, defaults: {} });
     }
 
-    public async addConnection() {
+    public async addConnection(connection: DatabaseConnectionCreate) {
         if (!this.store) {
             return;
         }
 
         const connectionId = uuid();
 
-        const connection: DatabaseDefinition = {
-            db_type: 'Postgres',
-            database_name: 'my_database',
-            host: 'localhost',
-            port: 5432,
-            username: 'user',
-            name: 'My Postgres DB',
-            is_production: false,
-        }
-
         await Promise.all([
-            commands.savePassword(connectionId, 'super-secret-password'),
-            this.store.set(uuid(), connection)
+            commands.savePassword(connectionId, connection.password),
+            this.store.set(uuid(), { ...connection, password: undefined })
         ]);
 
         await this.store.save();
     }
 
-    public async getConnections() {
+    public async getConnections(): Promise<DatabaseDefinition[]> {
         if (!this.store) {
             return [];
         }
 
-        return await this.store.values<DatabaseDefinition>();
-    }
+        const entries = await this.store.entries<DatabaseDefinitionBase>();
 
-    public async getPassword(id: string) {
-        return await commands.getPassword(id);
+        return entries.map(([key, value]) => ({ id: key, ...value}))
     }
 }

@@ -4,7 +4,7 @@ use tauri_specta::{Builder};
 use specta_typescript::Typescript;
 
 use crate::shared_types::database_definition::{
-    DatabaseDefinition,
+    DatabaseDefinitionBase,
     DatabaseType
 };
 
@@ -14,7 +14,7 @@ use crate::commands::{
 
 pub fn get_builder() -> Builder<tauri::Wry> {
     let builder = Builder::<tauri::Wry>::new()
-        .typ::<DatabaseDefinition>()
+        .typ::<DatabaseDefinitionBase>()
         .typ::<DatabaseType>()
         .commands(tauri_specta::collect_commands![
             secrets::save_password,
@@ -23,7 +23,7 @@ pub fn get_builder() -> Builder<tauri::Wry> {
 
     #[cfg(debug_assertions)]
     builder
-        .export(Typescript::default(), "../backend/bindings.ts")
+        .export(Typescript::default(), "../tauri-bindings/bindings.ts")
         .expect("Failed to export typescript bindings");
 
     builder
