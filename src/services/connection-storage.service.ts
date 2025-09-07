@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 import { load, Store } from '@tauri-apps/plugin-store';
 import { v4 as uuid } from 'uuid';
-import { DatabaseDefinitionBase, commands } from '@tauri-bindings';
-
-export const CONNECTIONS_STORAGE = 'connections.json';
+import { CONNECTION_FILE_NAME, DatabaseDefinitionBase, commands } from '@tauri-bindings';
 
 export interface DatabaseConnectionCreate extends DatabaseDefinitionBase {
     password: string;
@@ -18,7 +16,7 @@ export class ConnectionStorageService {
     private store?: Store;
 
     public async init() {
-        this.store = await load(CONNECTIONS_STORAGE, { autoSave: false, defaults: {} });
+        this.store = await load(CONNECTION_FILE_NAME, { autoSave: false, defaults: {} });
     }
 
     public async addConnection(connection: DatabaseConnectionCreate) {

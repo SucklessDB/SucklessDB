@@ -19,7 +19,7 @@ async getPassword(id: string) : Promise<string> {
 
 /** user-defined constants **/
 
-
+export const CONNECTION_FILE_NAME = "connections.json" as const;
 
 /** user-defined types **/
 

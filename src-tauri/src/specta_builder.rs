@@ -12,6 +12,8 @@ use crate::commands::{
     secrets
 };
 
+use crate::constants::CONNECTIONS_FILE_NAME;
+
 pub fn get_builder() -> Builder<tauri::Wry> {
     let builder = Builder::<tauri::Wry>::new()
         .typ::<DatabaseDefinitionBase>()
@@ -19,7 +21,8 @@ pub fn get_builder() -> Builder<tauri::Wry> {
         .commands(tauri_specta::collect_commands![
             secrets::save_password,
             secrets::get_password
-        ]);
+        ])
+        .constant("CONNECTION_FILE_NAME", &CONNECTIONS_FILE_NAME);
 
     #[cfg(debug_assertions)]
     builder

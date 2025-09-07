@@ -1,6 +1,7 @@
 mod specta_builder;
 mod shared_types;
 mod commands;
+mod constants;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
