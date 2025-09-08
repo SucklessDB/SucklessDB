@@ -8,8 +8,13 @@ export const commands = {
 async savePassword(id: string, password: string) : Promise<string> {
     return await TAURI_INVOKE("save_password", { id, password });
 },
-async connectToDb(id: string) : Promise<string> {
-    return await TAURI_INVOKE("connect_to_db", { id });
+async connectToDb(id: string) : Promise<Result<DatabaseDefinitionBase, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("connect_to_db", { id }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 }
 }
 
