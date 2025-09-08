@@ -9,7 +9,8 @@ use crate::shared_types::database_definition::{
 };
 
 use crate::commands::{
-    secrets
+    secret,
+    connection
 };
 
 use crate::constants::CONNECTIONS_FILE_NAME;
@@ -18,11 +19,11 @@ pub fn get_builder() -> Builder<tauri::Wry> {
     let builder = Builder::<tauri::Wry>::new()
         .typ::<DatabaseDefinitionBase>()
         .typ::<DatabaseType>()
+        .constant("CONNECTION_FILE_NAME", &CONNECTIONS_FILE_NAME)
         .commands(tauri_specta::collect_commands![
-            secrets::save_password,
-            secrets::get_password
-        ])
-        .constant("CONNECTION_FILE_NAME", &CONNECTIONS_FILE_NAME);
+            secret::save_password,
+            connection::connect_to_db
+        ]);
 
     #[cfg(debug_assertions)]
     builder

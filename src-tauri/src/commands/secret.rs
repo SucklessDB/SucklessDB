@@ -11,12 +11,3 @@ pub fn save_password(id: String, password: String) -> String {
     entry.set_password(&password).unwrap();
     return id;
 }
-
-#[specta]
-#[command]
-pub fn get_password(id: String) -> String {
-    let entry = Entry::new(&SERVICE_NAME, &id).unwrap();
-    let password = entry.get_password().unwrap();
-
-    password
-}

@@ -8,8 +8,8 @@ export const commands = {
 async savePassword(id: string, password: string) : Promise<string> {
     return await TAURI_INVOKE("save_password", { id, password });
 },
-async getPassword(id: string) : Promise<string> {
-    return await TAURI_INVOKE("get_password", { id });
+async connectToDb(id: string) : Promise<string> {
+    return await TAURI_INVOKE("connect_to_db", { id });
 }
 }
 
