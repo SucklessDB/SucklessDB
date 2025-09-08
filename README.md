@@ -35,4 +35,5 @@ Window with SucklessDB should appear.
 
 ---
 
-### Join our [Discord](https://discord.gg/ygS6SGMC) server for support and discussions.
+### Join our [Discord](https://discord.gg/nXsZZ5wve9) server for support and discussions.
+
