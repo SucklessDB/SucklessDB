@@ -26,6 +26,12 @@ importers:
       '@angular/router':
         specifier: 20.2.0
         version: 20.2.0(@angular/common@20.2.0(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0))(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(@angular/platform-browser@20.2.0(@angular/common@20.2.0(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0))(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0)))(rxjs@7.8.0)
+      '@ng-icons/core':
+        specifier: ^32.1.0
+        version: 32.1.0(@angular/common@20.2.0(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0))(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0)
+      '@ng-icons/tabler-icons':
+        specifier: ^32.1.0
+        version: 32.1.0
       '@tauri-apps/api':
         specifier: ^2.8.0
         version: 2.8.0
@@ -883,6 +889,16 @@ packages:
 
   '@napi-rs/wasm-runtime@1.0.3':
     resolution: {integrity: sha512-rZxtMsLwjdXkMUGC3WwsPwLNVqVqnTJT6MNIB6e+5fhMcSCPP0AOsNWuMQ5mdCq6HNjs/ZeWAEchpqeprqBD2Q==}
+
+  '@ng-icons/core@32.1.0':
+    resolution: {integrity: sha512-QMZSJIZYFg6THQKL9cQDEf7IbBcALcM09wCBmlIf0slmozRWcNJR25T9huiXy9/15OH1APegaRW+606e9bsOIg==}
+    peerDependencies:
+      '@angular/common': '>=20.0.0'
+      '@angular/core': '>=20.0.0'
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@ng-icons/tabler-icons@32.1.0':
+    resolution: {integrity: sha512-zqUaJcpllT7kl2UYExoO6oTnLtaQweSKs2wBK4xRsPlhwaU8RjbmZFdYLfa/IAEvLveD5D1i0orIPepu55ESqQ==}
 
   '@npmcli/agent@3.0.0':
     resolution: {integrity: sha512-S79NdEgDQd/NGCay6TCoVzXSj74skRZIKJcpJjC5lOq34SZzyI6MqtiiWoiVWoVrTcGjNeC4ipbh1VIHlpfF5Q==}
@@ -3913,6 +3929,17 @@ snapshots:
       '@emnapi/runtime': 1.5.0
       '@tybys/wasm-util': 0.10.0
     optional: true
+
+  '@ng-icons/core@32.1.0(@angular/common@20.2.0(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0))(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0)':
+    dependencies:
+      '@angular/common': 20.2.0(@angular/core@20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0))(rxjs@7.8.0)
+      '@angular/core': 20.2.0(@angular/compiler@20.2.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.3.0
+
+  '@ng-icons/tabler-icons@32.1.0':
+    dependencies:
+      tslib: 2.3.0
 
   '@npmcli/agent@3.0.0':
     dependencies:

@@ -5,8 +5,13 @@
 
 
 export const commands = {
-async savePassword(id: string, password: string) : Promise<string> {
-    return await TAURI_INVOKE("save_password", { id, password });
+async savePassword(id: string, password: string) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("save_password", { id, password }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 },
 async connectToDb(id: string) : Promise<Result<DatabaseDefinitionBase, string>> {
     try {
@@ -29,7 +34,7 @@ export const CONNECTION_FILE_NAME = "connections.json" as const;
 /** user-defined types **/
 
 export type DatabaseDefinitionBase = { name: string; is_production: boolean; db_type: DatabaseType; host: string; port: number; username: string; database_name: string }
-export type DatabaseType = "Mysql" | "Postgres"
+export type DatabaseType = "MySQL" | "PostgreSQL"
 
 /** tauri-specta globals **/
 

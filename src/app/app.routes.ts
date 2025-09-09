@@ -1,16 +1,16 @@
+import { connectionsGuard } from '@/routes/connections/connections.guard';
 import { Routes } from '@angular/router';
-import { connectionFormGuard } from '@/routes/connection-form/connection-form.guard';
 
 export const routes: Routes = [
     {
-        loadComponent: () => import('@/routes/connection-form/connection-form.component').then(m => m.ConnectionFormComponent),
-        path: 'connect',
+        loadComponent: () => import('@/routes/connections/connections.component').then(m => m.ConnectionsComponent),
+        path: 'connections',
         title: 'SucklessDB | Connect',
-        canActivate: [connectionFormGuard]
+        canActivate: [connectionsGuard]
     },
     {
         path: '**',
-        redirectTo: 'connect',
+        redirectTo: 'connections',
         pathMatch: 'full',
     },
 ];

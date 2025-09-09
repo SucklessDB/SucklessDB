@@ -3,8 +3,8 @@ use specta::Type;
 
 #[derive(Serialize, Deserialize, Type)]
 pub enum DatabaseType {
-    Mysql,
-    Postgres,
+    MySQL,
+    PostgreSQL,
 }
 
 #[derive(Serialize, Deserialize, Type)]

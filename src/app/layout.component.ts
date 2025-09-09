@@ -1,17 +1,23 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ToastComponent } from "@/ui-utils/toast/toast.component";
-import { ToastService } from "@/ui-utils/toast/toast.service";
+import { ConnectionsMenuComponent } from "@/components/connections-menu/connections-menu.component";
+import { ConnectionStorageService } from "@/services/connection-storage.service";
 
 @Component({
     selector: 'app-root',
     templateUrl: 'layout.component.html',
-    imports: [RouterOutlet, ToastComponent]
+    imports: [RouterOutlet, ToastComponent, ConnectionsMenuComponent],
 })
 export class LayoutComponent implements OnInit {
-    private toastService = inject(ToastService);
+    private connectionsService = inject(ConnectionStorageService);
 
-    public ngOnInit() {
-        this.toastService.toast('alert-info', 'Welcome in SucklessDB', 3_000);
+    private _initialized = signal(false);
+    public readonly initialized = this._initialized.asReadonly();
+
+    public async ngOnInit() {
+        await this.connectionsService.init();
+        this._initialized.set(true);
     }
+
 }
