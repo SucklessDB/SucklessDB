@@ -11,6 +11,8 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 export class ConnectionsComponent implements OnInit {
     private connectionsService = inject(ConnectionStorageService);
 
+    public selectedConnection = signal<DatabaseDefinition | undefined>(undefined);
+
     private _connections = signal<DatabaseDefinition[]>([]);
     public connections = this._connections.asReadonly();
 

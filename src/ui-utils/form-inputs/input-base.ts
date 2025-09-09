@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { booleanAttribute, Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { injectNgControl } from './input-helper';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Validators } from '@angular/forms';
@@ -17,6 +17,7 @@ export abstract class InputBase implements OnInit {
     public label = input<string>();
     public help = input<string>();
     public size = input<InputSize>('md');
+    public hideRequiredAsterisk = input(false, { transform: booleanAttribute });
     public get control() {
         return this.ngControl.control;
     }
@@ -30,11 +31,11 @@ export abstract class InputBase implements OnInit {
         const errors = this.control.errors;
         if (!errors) return '';
 
-        console.log(errors);
-
         if (errors['required']) return 'This field is required.';
         if (errors['minlength']) return `Minimum length is ${errors['minlength'].requiredLength} characters`;
         if (errors['maxlength']) return `Maximum length is ${errors['maxlength'].requiredLength} characters`;
+        if (errors['max']) return `Maximum number is ${errors['max'].max}`;
+        if (errors['min']) return `Minimum number is ${errors['min'].min}`;
 
         const customMessages = this.errorMessages();
         for (const key in customMessages) {

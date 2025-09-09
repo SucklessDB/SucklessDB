@@ -2,8 +2,8 @@
     @if(label(); as label) {
     <legend class="fieldset-legend">
         {{ label }}
-        @if(isRequired) {
-        <span class="text-error">*</span>
+        @if(!hideRequiredAsterisk() && isRequired) {
+            <span class="text-error">*</span>
         }
     </legend>
     }

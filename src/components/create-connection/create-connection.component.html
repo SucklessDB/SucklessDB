@@ -1,54 +1,52 @@
-<div class="card w-full max-w-md mx-auto shadow-xl border">
-    <div class="card-body">
-        <h2 class="card-title">Create Database Connection</h2>
+<form [formGroup]="connectionForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <select-input
+        formControlName="db_type"
+        label="Database Type"
+        [options]="databaseTypeOptions">
+    </select-input>
 
-        <form [formGroup]="connectionForm" (ngSubmit)="onSubmit()" class="space-y-4">
-            <select-input
-                formControlName="db_type"
-                label="Database Type"
-                [options]="databaseTypeOptions">
-            </select-input>
+    <text-input
+        formControlName="name"
+        hideRequiredAsterisk
+        label="Connection Name">
+    </text-input>
 
-            <text-input
-                formControlName="name"
-                label="Connection Name">
-            </text-input>
+    <text-input
+        formControlName="host"
+        hideRequiredAsterisk
+        label="Host / IP Address">
+    </text-input>
 
-            <text-input
-                formControlName="host"
-                label="Host / IP Address">
-            </text-input>
+    <text-input
+        formControlName="port"
+        hideRequiredAsterisk
+        label="Port"
+        type="number"
+    >
+    </text-input>
 
-            <text-input
-                formControlName="port"
-                label="Port"
-                type="number"
-            >
-            </text-input>
+    <text-input
+        formControlName="database_name"
+        hideRequiredAsterisk
+        label="Database Name">
+    </text-input>
 
-            <text-input
-                formControlName="database_name"
-                label="Database Name">
-            </text-input>
+    <text-input
+        formControlName="username"
+        hideRequiredAsterisk
+        label="Username">
+    </text-input>
 
-            <text-input
-                formControlName="username"
-                label="Username">
-            </text-input>
+    <text-input
+        formControlName="password"
+        hideRequiredAsterisk
+        label="Password"
+        type="password">
+    </text-input>
 
-            <text-input
-                formControlName="password"
-                label="Password"
-                type="password">
-            </text-input>
-
-            <div class="card-actions justify-end pt-4">
-                <button type="submit"
-                        class="btn btn-primary"
-                        [disabled]="!isFormValid">
-                    Create Connection
-                </button>
-            </div>
-        </form>
+    <div class="card-actions justify-end pt-4">
+        <button type="submit" class="btn btn-primary" [disabled]="!isFormValid">
+            Create Connection
+        </button>
     </div>
-</div>
+</form>
