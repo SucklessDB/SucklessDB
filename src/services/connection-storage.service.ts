@@ -12,6 +12,8 @@ export interface DatabaseDefinition extends DatabaseDefinitionBase {
     id: string;
 }
 
+export type DatabaseConnectionDetail = DatabaseConnectionCreate & DatabaseDefinition;
+
 export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType} = {
     MySQL: 'MySQL',
     PostgreSQL: 'PostgreSQL',
@@ -23,7 +25,9 @@ export class ConnectionStorageService {
     private store?: Store;
 
     public async init() {
-        this.store = await load(CONNECTION_FILE_NAME, { autoSave: false, defaults: {} });
+        if(!this.store) {
+            this.store = await load(CONNECTION_FILE_NAME, { autoSave: false, defaults: {} });
+        }
     }
 
     public async addConnection(connection: DatabaseConnectionCreate): Promise<DatabaseDefinition | undefined> {
@@ -57,5 +61,22 @@ export class ConnectionStorageService {
         const entries = await this.store.entries<DatabaseDefinitionBase>();
 
         return entries.map(([key, value]) => ({ id: key, ...value}))
+    }
+
+    public async getConnectionDetail(id: string): Promise<DatabaseConnectionDetail | undefined> {
+        if(!this.store) {
+            return;
+        }
+
+        const [connection, password] = await Promise.all([
+            this.store.get<DatabaseDefinitionBase>(id),
+            commands.getPassword(id)
+        ]);
+
+        if(password.status === 'ok' && connection) {
+            return { ...connection, password: password.data, id };
+        }
+
+        return;
     }
 }

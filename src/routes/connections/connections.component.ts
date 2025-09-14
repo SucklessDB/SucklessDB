@@ -1,11 +1,12 @@
-import { CreateConnectionComponent } from '@/components/create-connection/create-connection.component';
+import { ConnectionsListComponent } from '@/components/connections-list/connections-list.component';
 import { ConnectionStorageService, DatabaseConnectionCreate, DatabaseDefinition } from '@/services/connection-storage.service';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-connections',
   templateUrl: './connections.component.html',
-  imports: [CreateConnectionComponent],
+  imports: [ConnectionsListComponent, RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConnectionsComponent implements OnInit {

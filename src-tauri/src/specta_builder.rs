@@ -22,6 +22,7 @@ pub fn get_builder() -> Builder<tauri::Wry> {
         .constant("CONNECTION_FILE_NAME", &CONNECTIONS_FILE_NAME)
         .commands(tauri_specta::collect_commands![
             secret::save_password,
+            secret::get_password,
             connection::connect_to_db
         ]);
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SelectInputComponent, OptionDefinition } from '../../ui-utils/form-inputs/select-input/select-input.component';
 import { TextInputComponent } from '../../ui-utils/form-inputs/text-input/text-input.component';
@@ -14,7 +14,8 @@ const DefaultPorts = {
 @Component({
     selector: 'create-connection',
     templateUrl: './create-connection.component.html',
-    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent]
+    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateConnectionComponent {
     private formBuilder = inject(FormBuilder);
@@ -64,6 +65,7 @@ export class CreateConnectionComponent {
                 const strippedConnection = (({ id, ...connection }) => connection)(existingConnection);
                 this.connectionForm.setValue({ ...strippedConnection, password: '' });
             } else {
+                this.connectionForm.reset();
                 this.connectionForm.patchValue({ db_type: DatabaseTypes.PostgreSQL });
             }
         })

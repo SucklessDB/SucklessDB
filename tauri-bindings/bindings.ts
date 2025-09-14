@@ -13,6 +13,14 @@ async savePassword(id: string, password: string) : Promise<Result<null, string>>
     else return { status: "error", error: e  as any };
 }
 },
+async getPassword(id: string) : Promise<Result<string, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("get_password", { id }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
 async connectToDb(id: string) : Promise<Result<DatabaseDefinitionBase, string>> {
     try {
     return { status: "ok", data: await TAURI_INVOKE("connect_to_db", { id }) };
