@@ -1,7 +1,7 @@
 import { ConnectionFormComponent } from "@/components/connection-form/connection-form.component";
 import { ConnectionStorageService, DatabaseModel } from "@/services/connection-storage.service";
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { from, map, of, switchMap } from "rxjs";
 
@@ -16,7 +16,7 @@ import { from, map, of, switchMap } from "rxjs";
     `,
     imports: [ConnectionFormComponent, AsyncPipe]
 })
-export class ConnectionDetailComponent implements OnInit {
+export class ConnectionDetailComponent {
     private connectionService = inject(ConnectionStorageService);
     private activatedRoute = inject(ActivatedRoute);
     private router = inject(Router);
@@ -31,10 +31,6 @@ export class ConnectionDetailComponent implements OnInit {
             }
         })
     )
-
-    public async ngOnInit() {
-        (window as any).connectionDetail = this;
-    }
 
     public async saveConnection(connection: DatabaseModel) {
         const connectionId = this.activatedRoute.snapshot.params['connection'];

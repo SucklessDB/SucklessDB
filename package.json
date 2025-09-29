@@ -1,74 +1,72 @@
 {
-  "name": "sucklessdb",
-  "version": "0.1.0",
-  "scripts": {
-    "fe:ng": "ng",
-    "fe:dev": "ng serve",
-    "fe:build": "ng build",
-    "fe:watch": "ng build --watch --configuration development",
-    "fe:test": "ng test",
-    "fe:lint": "ng lint",
-    "fe:format": "prettier src/**/*.ts --write",
-    "dev": "CARGO_TARGET_DIR=target tauri dev",
-    "build": "CARGO_TARGET_DIR=target tauri build"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
-  "engines": {
-    "node": "24.5.0",
-    "npm": "please-use-pnpm"
-  },
-  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
-  "private": false,
-  "dependencies": {
-    "@angular/common": "20.2.0",
-    "@angular/compiler": "20.2.0",
-    "@angular/core": "20.2.0",
-    "@angular/forms": "20.2.0",
-    "@angular/platform-browser": "20.2.0",
-    "@angular/router": "20.2.0",
-    "@ng-icons/core": "^32.1.0",
-    "@ng-icons/tabler-icons": "^32.1.0",
-    "@tauri-apps/api": "^2.8.0",
-    "@tauri-apps/plugin-store": "~2.4.0",
-    "rxjs": "7.8.0",
-    "tslib": "2.3.0",
-    "uuid": "^11.1.0"
-  },
-  "devDependencies": {
-    "@angular-eslint/builder": "20.3.0",
-    "@angular/build": "20.2.1",
-    "@angular/cli": "20.2.1",
-    "@angular/compiler-cli": "20.2.0",
-    "@eslint/js": "^9.35.0",
-    "@tailwindcss/postcss": "^4.1.12",
-    "@tauri-apps/cli": "^2.8.3",
-    "@types/jasmine": "5.1.0",
-    "angular-eslint": "20.3.0",
-    "daisyui": "^5.0.54",
-    "eslint": "^9.35.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "jasmine-core": "5.9.0",
-    "karma": "6.4.0",
-    "karma-chrome-launcher": "3.2.0",
-    "karma-coverage": "2.2.0",
-    "karma-jasmine": "5.1.0",
-    "karma-jasmine-html-reporter": "2.1.0",
-    "postcss": "^8.5.6",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.12",
-    "typescript": "5.9.2",
-    "typescript-eslint": "8.40.0"
-  }
+    "name": "sucklessdb",
+    "version": "0.1.0",
+    "scripts": {
+        "fe:ng": "ng",
+        "fe:dev": "ng serve",
+        "fe:build": "ng build",
+        "fe:watch": "ng build --watch --configuration development",
+        "fe:test": "ng test",
+        "fe:lint": "ng lint",
+        "fe:format": "prettier src/**/*.ts --write",
+        "dev": "CARGO_TARGET_DIR=target tauri dev",
+        "build": "CARGO_TARGET_DIR=target tauri build"
+    },
+    "prettier": {
+        "overrides": [
+            {
+                "files": "*.html",
+                "options": {
+                    "parser": "angular"
+                }
+            }
+        ]
+    },
+    "engines": {
+        "node": "24.5.0",
+        "npm": "please-use-pnpm"
+    },
+    "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
+    "private": false,
+    "dependencies": {
+        "@angular/common": "20.2.0",
+        "@angular/compiler": "20.2.0",
+        "@angular/core": "20.2.0",
+        "@angular/forms": "20.2.0",
+        "@angular/platform-browser": "20.2.0",
+        "@angular/router": "20.2.0",
+        "@ng-icons/core": "^32.1.0",
+        "@ng-icons/tabler-icons": "^32.1.0",
+        "@tauri-apps/api": "^2.8.0",
+        "@tauri-apps/plugin-store": "~2.4.0",
+        "rxjs": "7.8.0",
+        "tslib": "2.3.0",
+        "uuid": "^11.1.0"
+    },
+    "devDependencies": {
+        "@angular-eslint/builder": "20.3.0",
+        "@angular/build": "20.2.1",
+        "@angular/cli": "20.2.1",
+        "@angular/compiler-cli": "20.2.0",
+        "@eslint/js": "^9.35.0",
+        "@tailwindcss/postcss": "^4.1.12",
+        "@tauri-apps/cli": "^2.8.3",
+        "@types/jasmine": "5.1.0",
+        "angular-eslint": "20.3.0",
+        "daisyui": "^5.0.54",
+        "eslint": "^9.35.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.4",
+        "jasmine-core": "5.9.0",
+        "karma": "6.4.0",
+        "karma-chrome-launcher": "3.2.0",
+        "karma-coverage": "2.2.0",
+        "karma-jasmine": "5.1.0",
+        "karma-jasmine-html-reporter": "2.1.0",
+        "postcss": "^8.5.6",
+        "prettier": "^3.6.2",
+        "tailwindcss": "^4.1.12",
+        "typescript": "5.9.2",
+        "typescript-eslint": "8.40.0"
+    }
 }

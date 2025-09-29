@@ -1,5 +1,5 @@
 import { ConnectionsListComponent } from '@/components/connections-list/connections-list.component';
-import { ConnectionStorageService, DatabaseModel, DatabaseDefinition } from '@/services/connection-storage.service';
+import { ConnectionStorageService, DatabaseDefinition } from '@/services/connection-storage.service';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 

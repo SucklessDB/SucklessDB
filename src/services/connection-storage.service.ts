@@ -1,9 +1,9 @@
+import { ToastService } from "@/ui-utils/toast/toast.service";
 import { inject, Injectable } from "@angular/core";
 import { load, Store } from '@tauri-apps/plugin-store';
-import { v4 as uuid } from 'uuid';
-import { CONNECTION_FILE_NAME, DatabaseDefinitionBase, DatabaseType, commands } from '@tauri-bindings';
-import { ToastService } from "@/ui-utils/toast/toast.service";
+import { commands, CONNECTION_FILE_NAME, DatabaseDefinitionBase, DatabaseType } from '@tauri-bindings';
 import { Subject } from "rxjs";
+import { v4 as uuid } from 'uuid';
 
 export interface DatabaseModel extends DatabaseDefinitionBase {
     password: string;
@@ -15,7 +15,8 @@ export interface DatabaseDefinition extends DatabaseDefinitionBase {
 
 export type DatabaseConnectionDetail = DatabaseModel & DatabaseDefinition;
 
-export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType} = {
+// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
+export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType } = {
     MySQL: 'MySQL',
     PostgreSQL: 'PostgreSQL',
 }
@@ -98,6 +99,7 @@ export class ConnectionStorageService {
         }
 
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const connectionWithoutPassword = (({password, ...connection}) => connection)(connection);
 
             await Promise.all([

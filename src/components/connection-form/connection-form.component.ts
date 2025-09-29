@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { SelectInputComponent, OptionDefinition } from '../../ui-utils/form-inputs/select-input/select-input.component';
-import { TextInputComponent } from '../../ui-utils/form-inputs/text-input/text-input.component';
 import { DatabaseModel, DatabaseTypes } from '@/services/connection-storage.service';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { distinctUntilChanged, startWith } from 'rxjs';
+import { OptionDefinition, SelectInputComponent } from '../../ui-utils/form-inputs/select-input/select-input.component';
+import { TextInputComponent } from '../../ui-utils/form-inputs/text-input/text-input.component';
 
 const DefaultPorts = {
     [DatabaseTypes.PostgreSQL]: 5432,
