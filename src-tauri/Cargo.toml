@@ -1,9 +1,9 @@
 [package]
 name = "app"
 version = "0.1.0"
-description = "A Tauri App"
+description = "SucklessDB"
 authors = ["you"]
-license = ""
+license = "GPL-V3"
 repository = ""
 edition = "2021"
 rust-version = "1.77.2"

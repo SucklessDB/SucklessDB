@@ -1,22 +1,48 @@
-import { CreateConnectionComponent } from "@/components/create-connection/create-connection.component";
-import { ConnectionStorageService } from "@/services/connection-storage.service";
-import { Component, inject, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ConnectionFormComponent } from "@/components/connection-form/connection-form.component";
+import { ConnectionStorageService, DatabaseModel } from "@/services/connection-storage.service";
+import { AsyncPipe } from "@angular/common";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { from, map, of, switchMap } from "rxjs";
 
 @Component({
     selector: 'connection-detail',
     templateUrl: './connection-detail.component.html',
-    imports: []
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: `
+        :host {
+            width: 100%;
+        }
+    `,
+    imports: [ConnectionFormComponent, AsyncPipe]
 })
 export class ConnectionDetailComponent implements OnInit {
     private connectionService = inject(ConnectionStorageService);
     private activatedRoute = inject(ActivatedRoute);
+    private router = inject(Router);
 
-    public get connectionId(): string {
-        return this.activatedRoute.snapshot.params['id'];
+    public connection$ = this.activatedRoute.params.pipe(
+        map(params => params['connection']),
+        switchMap(connectionId => {
+            if(connectionId === 'new') {
+                return of(undefined);
+            } else {
+                return from(this.connectionService.getConnectionDetail(connectionId));
+            }
+        })
+    )
+
+    public async ngOnInit() {
+        (window as any).connectionDetail = this;
     }
 
-    public ngOnInit() {
-        this.connectionService.getConnectionDetail(this.connectionId);
+    public async saveConnection(connection: DatabaseModel) {
+        const connectionId = this.activatedRoute.snapshot.params['connection'];
+        if(connectionId === 'new') {
+            const created = await this.connectionService.createConnection(connection);
+            this.router.navigate(['/connections', created]);
+        } else {
+            await this.connectionService.updateConnection(connectionId, connection);
+        }
     }
 }

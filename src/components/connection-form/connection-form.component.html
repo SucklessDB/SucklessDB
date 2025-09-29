@@ -1,4 +1,4 @@
-<form [formGroup]="connectionForm" (ngSubmit)="onSubmit()" class="space-y-4">
+<form [formGroup]="connectionForm">
     <select-input
         formControlName="db_type"
         label="Database Type"
@@ -43,10 +43,4 @@
         label="Password"
         type="password">
     </text-input>
-
-    <div class="card-actions justify-end pt-4">
-        <button type="submit" class="btn btn-primary" [disabled]="!isFormValid">
-            Create Connection
-        </button>
-    </div>
 </form>

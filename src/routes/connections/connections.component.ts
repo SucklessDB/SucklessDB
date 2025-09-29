@@ -1,5 +1,5 @@
 import { ConnectionsListComponent } from '@/components/connections-list/connections-list.component';
-import { ConnectionStorageService, DatabaseConnectionCreate, DatabaseDefinition } from '@/services/connection-storage.service';
+import { ConnectionStorageService, DatabaseModel, DatabaseDefinition } from '@/services/connection-storage.service';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -17,16 +17,12 @@ export class ConnectionsComponent implements OnInit {
     private _connections = signal<DatabaseDefinition[]>([]);
     public connections = this._connections.asReadonly();
 
-    public ngOnInit() {
-        this.loadConnections();
+    constructor() {
+        this.connectionsService.reloadConnections$.subscribe(() => this.loadConnections());
     }
 
-    public async createConnection(connectionData: DatabaseConnectionCreate) {
-        const connection = await this.connectionsService.addConnection(connectionData);
-
-        if(connection) {
-            this._connections.update(c => [...c, connection]);
-        }
+    public ngOnInit() {
+        this.loadConnections();
     }
 
     private async loadConnections() {

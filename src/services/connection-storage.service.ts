@@ -3,8 +3,9 @@ import { load, Store } from '@tauri-apps/plugin-store';
 import { v4 as uuid } from 'uuid';
 import { CONNECTION_FILE_NAME, DatabaseDefinitionBase, DatabaseType, commands } from '@tauri-bindings';
 import { ToastService } from "@/ui-utils/toast/toast.service";
+import { Subject } from "rxjs";
 
-export interface DatabaseConnectionCreate extends DatabaseDefinitionBase {
+export interface DatabaseModel extends DatabaseDefinitionBase {
     password: string;
 }
 
@@ -12,7 +13,7 @@ export interface DatabaseDefinition extends DatabaseDefinitionBase {
     id: string;
 }
 
-export type DatabaseConnectionDetail = DatabaseConnectionCreate & DatabaseDefinition;
+export type DatabaseConnectionDetail = DatabaseModel & DatabaseDefinition;
 
 export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType} = {
     MySQL: 'MySQL',
@@ -24,33 +25,40 @@ export class ConnectionStorageService {
     private toastService = inject(ToastService);
     private store?: Store;
 
+    public reloadConnections$ = new Subject<void>();
+
     public async init() {
         if(!this.store) {
             this.store = await load(CONNECTION_FILE_NAME, { autoSave: false, defaults: {} });
         }
     }
 
-    public async addConnection(connection: DatabaseConnectionCreate): Promise<DatabaseDefinition | undefined> {
+    public async updateConnection(connectionId: string, connection: DatabaseModel): Promise<string | undefined> {
+        if (!this.store || !this.store.has(connectionId)) {
+            return;
+        }
+
+        if(await this.saveConnection(connectionId, connection)) {
+            this.toastService.toast('alert-success', 'Connection updated successfully');
+            return connectionId;
+        }
+
+        return;
+    }
+
+    public async createConnection(connection: DatabaseModel): Promise<string | undefined> {
         if (!this.store) {
             return;
         }
 
         const connectionId = uuid();
 
-        try {
-            const connectionWithoutPassword = (({password, ...connection}) => connection)(connection);
-
-            await Promise.all([
-                commands.savePassword(connectionId, connection.password),
-                this.store.set(uuid(), connectionWithoutPassword)
-            ]);
-
-            await this.store.save();
-            return { id: connectionId, ...connectionWithoutPassword };
-        } catch {
-            this.toastService.toast('alert-error', 'Error while creating connection.');
-            return undefined;
+        if(await this.saveConnection(connectionId, connection)) {
+            this.toastService.toast('alert-success', 'Connection created successfully');
+            return connectionId;
         }
+
+        return;
     }
 
     public async getConnections(): Promise<DatabaseDefinition[]> {
@@ -63,7 +71,7 @@ export class ConnectionStorageService {
         return entries.map(([key, value]) => ({ id: key, ...value}))
     }
 
-    public async getConnectionDetail(id: string): Promise<DatabaseConnectionDetail | undefined> {
+    public async getConnectionDetail(id: string): Promise<DatabaseModel | undefined> {
         if(!this.store) {
             return;
         }
@@ -74,9 +82,36 @@ export class ConnectionStorageService {
         ]);
 
         if(password.status === 'ok' && connection) {
-            return { ...connection, password: password.data, id };
+            return { ...connection, password: password.data };
+        }
+
+        if(password.status === 'error') {
+            this.toastService.toast('alert-error', password.error);
         }
 
         return;
+    }
+
+    private async saveConnection(connectionId: string, connection: DatabaseModel): Promise<boolean> {
+        if(!this.store) {
+            return false;
+        }
+
+        try {
+            const connectionWithoutPassword = (({password, ...connection}) => connection)(connection);
+
+            await Promise.all([
+                commands.savePassword(connectionId, connection.password),
+                this.store.set(connectionId, connectionWithoutPassword)
+            ]);
+
+            await this.store.save();
+            this.reloadConnections$.next();
+            return true;
+        } catch(err) {
+            const e = err as Error;
+            this.toastService.toast('alert-error', `Error while saving connection: ${e.message}`);
+            return false;
+        }
     }
 }

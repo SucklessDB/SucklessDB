@@ -11,7 +11,7 @@ export const routes: Routes = [
         children: [
             {
                 loadComponent: () => import('@/routes/connection-detail/connection-detail.component').then(m => m.ConnectionDetailComponent),
-                path: ':id'
+                path: ':connection'
             }
         ]
     },

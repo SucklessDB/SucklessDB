@@ -1,3 +1,9 @@
-<div>
-    {{ connectionId }}
+<div class="h-screen w-full grid place-content-center">
+    <div class="bg-base-300 p-6 rounded-2xl w-96 flex flex-col gap-4">
+        <connection-form #form [connection]="(connection$ | async) || undefined"></connection-form>
+
+        <div class="flex justify-end gap-2">
+            <button class="btn btn-primary" (click)="saveConnection(form.value)" [disabled]="!form.isFormValid()">Save</button>
+        </div>
+    </div>
 </div>

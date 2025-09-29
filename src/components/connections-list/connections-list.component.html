@@ -1,18 +1,32 @@
-<div class="drawer">
-    <input [id]="id" type="checkbox" class="drawer-toggle" [checked]="opened()"/>
-    <div class="drawer-content">
-        <label [for]="id" class="btn btn-primary drawer-button">Open drawer</label>
+@if(static()) {
+    <div class="h-screen">
+        <ng-container *ngTemplateOutlet="connectionsList"></ng-container>
     </div>
-    <div class="drawer-side">
-        @if(!static()) {
+} @else {
+    <div class="drawer">
+        <input [id]="id" type="checkbox" class="drawer-toggle" [checked]="opened()"/>
+        <div class="drawer-content">
+            <label [for]="id" class="btn btn-primary drawer-button"><ng-content></ng-content></label>
+        </div>
+        <div class="drawer-side">
             <label [for]="id" aria-label="close sidebar" class="drawer-overlay"></label>
-        }
-        <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            @for(connection of connections(); track connection.id) {
-                <li>
-                    <a [routerLink]="['/', 'connections', connection.id]">{{ connection.name }}</a>
-                </li>
-            }
-        </ul>
+            <ng-container *ngTemplateOutlet="connectionsList"></ng-container>
+        </div>
     </div>
-</div>
+}
+
+<ng-template #connectionsList>
+    <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+        @for(connection of connections(); track connection.id) {
+            <li>
+                <a [routerLinkActive]="'menu-active'" [routerLink]="['/', 'connections', connection.id]">{{ connection.name }}</a>
+            </li>
+        }
+
+        <div class="divider"></div>
+
+        <li>
+            <a [routerLinkActive]="'menu-active'" [routerLink]="['/', 'connections', 'new']">New connection</a>
+        </li>
+    </ul>
+</ng-template>

@@ -1,13 +1,14 @@
 import { DatabaseDefinition } from "@/services/connection-storage.service";
+import { NgTemplateOutlet } from "@angular/common";
 import { booleanAttribute, ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 import { v4 as uuid } from 'uuid';
 
 @Component({
     selector: 'connections-list',
     templateUrl: './connections-list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink],
+    imports: [RouterLink, NgTemplateOutlet, RouterLinkActive],
 })
 export class ConnectionsListComponent {
     public connections = input<DatabaseDefinition[]>();
