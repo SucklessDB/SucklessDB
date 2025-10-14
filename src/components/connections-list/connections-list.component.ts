@@ -1,8 +1,8 @@
-import { DatabaseDefinition } from "@/services/connection-storage.service";
-import { NgTemplateOutlet } from "@angular/common";
-import { booleanAttribute, ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { NgTemplateOutlet } from '@angular/common';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { v4 as uuid } from 'uuid';
+import type { DatabaseDefinition } from '@/services/connection-storage.service';
 
 @Component({
     selector: 'connections-list',

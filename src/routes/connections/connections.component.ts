@@ -1,13 +1,13 @@
-import { ConnectionsListComponent } from '@/components/connections-list/connections-list.component';
-import { ConnectionStorageService, DatabaseModel, DatabaseDefinition } from '@/services/connection-storage.service';
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, type OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ConnectionsListComponent } from '@/components/connections-list/connections-list.component';
+import { ConnectionStorageService, type DatabaseDefinition } from '@/services/connection-storage.service';
 
 @Component({
-  selector: 'app-connections',
-  templateUrl: './connections.component.html',
-  imports: [ConnectionsListComponent, RouterOutlet],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-connections',
+    templateUrl: './connections.component.html',
+    imports: [ConnectionsListComponent, RouterOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConnectionsComponent implements OnInit {
     private connectionsService = inject(ConnectionStorageService);

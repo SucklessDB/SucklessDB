@@ -1,9 +1,9 @@
-import { inject, Injectable } from "@angular/core";
-import { load, Store } from '@tauri-apps/plugin-store';
+import { Injectable, inject } from '@angular/core';
+import { load, type Store } from '@tauri-apps/plugin-store';
+import { CONNECTION_FILE_NAME, commands, type DatabaseDefinitionBase, type DatabaseType } from '@tauri-bindings';
+import { Subject } from 'rxjs';
 import { v4 as uuid } from 'uuid';
-import { CONNECTION_FILE_NAME, DatabaseDefinitionBase, DatabaseType, commands } from '@tauri-bindings';
-import { ToastService } from "@/ui-utils/toast/toast.service";
-import { Subject } from "rxjs";
+import { ToastService } from '@/ui-utils/toast/toast.service';
 
 export interface DatabaseModel extends DatabaseDefinitionBase {
     password: string;
@@ -15,10 +15,10 @@ export interface DatabaseDefinition extends DatabaseDefinitionBase {
 
 export type DatabaseConnectionDetail = DatabaseModel & DatabaseDefinition;
 
-export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType} = {
+export const DatabaseTypes: { readonly [K in DatabaseType]: DatabaseType } = {
     MySQL: 'MySQL',
     PostgreSQL: 'PostgreSQL',
-}
+};
 
 @Injectable({ providedIn: 'root' })
 export class ConnectionStorageService {
@@ -28,7 +28,7 @@ export class ConnectionStorageService {
     public reloadConnections$ = new Subject<void>();
 
     public async init() {
-        if(!this.store) {
+        if (!this.store) {
             this.store = await load(CONNECTION_FILE_NAME, { autoSave: false, defaults: {} });
         }
     }
@@ -38,7 +38,7 @@ export class ConnectionStorageService {
             return;
         }
 
-        if(await this.saveConnection(connectionId, connection)) {
+        if (await this.saveConnection(connectionId, connection)) {
             this.toastService.toast('alert-success', 'Connection updated successfully');
             return connectionId;
         }
@@ -53,7 +53,7 @@ export class ConnectionStorageService {
 
         const connectionId = uuid();
 
-        if(await this.saveConnection(connectionId, connection)) {
+        if (await this.saveConnection(connectionId, connection)) {
             this.toastService.toast('alert-success', 'Connection created successfully');
             return connectionId;
         }
@@ -68,24 +68,21 @@ export class ConnectionStorageService {
 
         const entries = await this.store.entries<DatabaseDefinitionBase>();
 
-        return entries.map(([key, value]) => ({ id: key, ...value}))
+        return entries.map(([key, value]) => ({ id: key, ...value }));
     }
 
     public async getConnectionDetail(id: string): Promise<DatabaseModel | undefined> {
-        if(!this.store) {
+        if (!this.store) {
             return;
         }
 
-        const [connection, password] = await Promise.all([
-            this.store.get<DatabaseDefinitionBase>(id),
-            commands.getPassword(id)
-        ]);
+        const [connection, password] = await Promise.all([this.store.get<DatabaseDefinitionBase>(id), commands.getPassword(id)]);
 
-        if(password.status === 'ok' && connection) {
+        if (password.status === 'ok' && connection) {
             return { ...connection, password: password.data };
         }
 
-        if(password.status === 'error') {
+        if (password.status === 'error') {
             this.toastService.toast('alert-error', password.error);
         }
 
@@ -93,22 +90,19 @@ export class ConnectionStorageService {
     }
 
     private async saveConnection(connectionId: string, connection: DatabaseModel): Promise<boolean> {
-        if(!this.store) {
+        if (!this.store) {
             return false;
         }
 
         try {
-            const connectionWithoutPassword = (({password, ...connection}) => connection)(connection);
+            const connectionWithoutPassword = (({ password, ...connection }) => connection)(connection);
 
-            await Promise.all([
-                commands.savePassword(connectionId, connection.password),
-                this.store.set(connectionId, connectionWithoutPassword)
-            ]);
+            await Promise.all([commands.savePassword(connectionId, connection.password), this.store.set(connectionId, connectionWithoutPassword)]);
 
             await this.store.save();
             this.reloadConnections$.next();
             return true;
-        } catch(err) {
+        } catch (err) {
             const e = err as Error;
             this.toastService.toast('alert-error', `Error while saving connection: ${e.message}`);
             return false;

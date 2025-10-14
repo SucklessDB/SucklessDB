@@ -1,9 +1,9 @@
-import { Component, inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'database',
-    templateUrl: './database.component.html'
+    templateUrl: './database.component.html',
 })
 export class DatabaseComponent {
     private activeRoute = inject(ActivatedRoute);
