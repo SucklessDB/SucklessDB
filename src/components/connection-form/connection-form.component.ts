@@ -29,7 +29,7 @@ export class ConnectionFormComponent {
         return this.connectionForm.getRawValue();
     }
 
-    public databaseTypeOptions: OptionDefinition[] = Object.values(DatabaseTypes).map((db) => ({ value: db, label: db }));
+    public databaseTypeOptions: OptionDefinition[] = Object.values(DatabaseTypes).map(db => ({ value: db, label: db }));
     public connectionForm = this.formBuilder.nonNullable.group({
         db_type: [DatabaseTypes.PostgreSQL],
         name: ['', Validators.required],
@@ -48,7 +48,7 @@ export class ConnectionFormComponent {
                 distinctUntilChanged((prev, curr) => prev.db_type === curr.db_type),
                 takeUntilDestroyed(),
             )
-            .subscribe((value) => {
+            .subscribe(value => {
                 this.connectionForm.patchValue({ port: DefaultPorts[value.db_type || DatabaseTypes.PostgreSQL] }, { emitEvent: false });
             });
 

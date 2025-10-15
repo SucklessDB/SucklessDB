@@ -23,8 +23,8 @@ export class ConnectionDetailComponent {
 
     public connection$ = this.activatedRoute.params.pipe(
         // biome-ignore lint/complexity/useLiteralKeys: params are not typed
-        map((params) => params['connection']),
-        switchMap((connectionId) => {
+        map(params => params['connection']),
+        switchMap(connectionId => {
             if (connectionId === 'new') {
                 return of(undefined);
             } else {

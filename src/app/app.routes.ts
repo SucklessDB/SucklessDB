@@ -10,13 +10,13 @@ export const routes: Routes = [
         canActivateChild: [connectionsGuard],
         children: [
             {
-                loadComponent: () => import('@/routes/connection-detail/connection-detail.component').then((m) => m.ConnectionDetailComponent),
+                loadComponent: () => import('@/routes/connection-detail/connection-detail.component').then(m => m.ConnectionDetailComponent),
                 path: ':connection',
             },
         ],
     },
     {
-        loadComponent: () => import('@/routes/database/database.component').then((m) => m.DatabaseComponent),
+        loadComponent: () => import('@/routes/database/database.component').then(m => m.DatabaseComponent),
         path: 'database/:id',
     },
     {
