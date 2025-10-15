@@ -11,7 +11,9 @@
     },
     "formatter": {
         "enabled": true,
-        "useEditorconfig": true
+        "useEditorconfig": true,
+        "lineWidth": 150,
+        "expand": null
     },
     "linter": {
         "enabled": true,
@@ -25,8 +27,7 @@
     "javascript": {
         "formatter": {
             "quoteStyle": "single",
-            "arrowParentheses": "asNeeded",
-            "expand": "never"
+            "arrowParentheses": "asNeeded"
         }
     },
     "html": {
