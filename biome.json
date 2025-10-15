@@ -3,7 +3,7 @@
     "vcs": {
         "enabled": false,
         "clientKind": "git",
-        "useIgnoreFile": false
+        "useIgnoreFile": true
     },
     "files": {
         "ignoreUnknown": false,
@@ -11,9 +11,7 @@
     },
     "formatter": {
         "enabled": true,
-        "indentStyle": "space",
-        "indentWidth": 4,
-        "lineWidth": 160
+        "useEditorconfig": true
     },
     "linter": {
         "enabled": true,
@@ -22,11 +20,6 @@
             "suspicious": {
                 "useIterableCallbackReturn": "off"
             }
-        }
-    },
-    "javascript": {
-        "formatter": {
-            "quoteStyle": "single"
         }
     },
     "html": {
