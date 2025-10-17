@@ -1,6 +1,6 @@
+import type { Routes } from '@angular/router';
 import { ConnectionsComponent } from '@/routes/connections/connections.component';
 import { connectionsGuard } from '@/routes/connections/connections.guard';
-import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
@@ -11,9 +11,9 @@ export const routes: Routes = [
         children: [
             {
                 loadComponent: () => import('@/routes/connection-detail/connection-detail.component').then(m => m.ConnectionDetailComponent),
-                path: ':connection'
-            }
-        ]
+                path: ':connection',
+            },
+        ],
     },
     {
         loadComponent: () => import('@/routes/database/database.component').then(m => m.DatabaseComponent),

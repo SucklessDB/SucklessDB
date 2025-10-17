@@ -14,7 +14,7 @@ export class ToastService {
     public readonly toasts = signal<Toast[]>([]);
 
     public toast(type: ToastType, message: string, expiration = 2_000) {
-        this.toasts.update((toasts) => {
+        this.toasts.update(toasts => {
             const toast: Toast = { type, message, id: uuid() };
             this.setToastExpiration(toast.id, expiration);
             return [...toasts, toast];
@@ -23,7 +23,7 @@ export class ToastService {
 
     private setToastExpiration(id: string, expiration: number) {
         setTimeout(() => {
-            this.toasts.update((toasts) => toasts.filter((t) => t.id !== id));
+            this.toasts.update(toasts => toasts.filter(t => t.id !== id));
         }, expiration);
     }
 }

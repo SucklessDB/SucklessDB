@@ -1,6 +1,6 @@
-import { DestroyRef, Directive, ElementRef, inject, input, OnInit, Renderer2 } from '@angular/core';
+import { DestroyRef, Directive, ElementRef, inject, input, type OnInit, Renderer2 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
 
 @Directive({
     selector: '[errorClass]',
@@ -33,7 +33,7 @@ export class ErrorClassDirective implements OnInit {
 
     private addClass(cssClass: string | string[]) {
         if (Array.isArray(cssClass)) {
-            cssClass.forEach((cssClass) => this.renderer.addClass(this.elementRef.nativeElement, cssClass));
+            cssClass.forEach(cssClass => this.renderer.addClass(this.elementRef.nativeElement, cssClass));
         } else {
             this.renderer.addClass(this.elementRef.nativeElement, cssClass);
         }
@@ -41,7 +41,7 @@ export class ErrorClassDirective implements OnInit {
 
     private removeClass(cssClass: string | string[]) {
         if (Array.isArray(cssClass)) {
-            cssClass.forEach((cssClass) => this.renderer.removeClass(this.elementRef.nativeElement, cssClass));
+            cssClass.forEach(cssClass => this.renderer.removeClass(this.elementRef.nativeElement, cssClass));
         } else {
             this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
         }

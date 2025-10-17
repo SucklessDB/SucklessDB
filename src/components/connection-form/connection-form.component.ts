@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { SelectInputComponent, OptionDefinition } from '../../ui-utils/form-inputs/select-input/select-input.component';
-import { TextInputComponent } from '../../ui-utils/form-inputs/text-input/text-input.component';
-import { DatabaseModel, DatabaseTypes } from '@/services/connection-storage.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { distinctUntilChanged, startWith } from 'rxjs';
+import { type DatabaseModel, DatabaseTypes } from '@/services/connection-storage.service';
+import { type OptionDefinition, SelectInputComponent } from '../../ui-utils/form-inputs/select-input/select-input.component';
+import { TextInputComponent } from '../../ui-utils/form-inputs/text-input/text-input.component';
 
 const DefaultPorts = {
     [DatabaseTypes.PostgreSQL]: 5432,
-    [DatabaseTypes.MySQL]: 3306
-}
+    [DatabaseTypes.MySQL]: 3306,
+};
 
 @Component({
     selector: 'connection-form',
     templateUrl: './connection-form.component.html',
     imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConnectionFormComponent {
     private formBuilder = inject(FormBuilder);
@@ -42,13 +42,15 @@ export class ConnectionFormComponent {
     });
 
     constructor() {
-        this.connectionForm.valueChanges.pipe(
-            startWith(this.connectionForm.value),
-            distinctUntilChanged((prev, curr) => prev.db_type === curr.db_type),
-            takeUntilDestroyed()
-        ).subscribe(value => {
-            this.connectionForm.patchValue({ port: DefaultPorts[value.db_type || DatabaseTypes.PostgreSQL] }, { emitEvent: false });
-        });
+        this.connectionForm.valueChanges
+            .pipe(
+                startWith(this.connectionForm.value),
+                distinctUntilChanged((prev, curr) => prev.db_type === curr.db_type),
+                takeUntilDestroyed(),
+            )
+            .subscribe(value => {
+                this.connectionForm.patchValue({ port: DefaultPorts[value.db_type || DatabaseTypes.PostgreSQL] }, { emitEvent: false });
+            });
 
         this.connectionForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
             this._isFormValid.set(this.connectionForm.valid);
@@ -56,12 +58,12 @@ export class ConnectionFormComponent {
 
         effect(() => {
             const connection = this.connection();
-            if(connection) {
+            if (connection) {
                 this.connectionForm.setValue(connection, { emitEvent: false });
                 this._isFormValid.set(this.connectionForm.valid);
             } else {
                 this.connectionForm.reset();
             }
-        })
+        });
     }
 }

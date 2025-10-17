@@ -7,20 +7,9 @@
         "fe:build": "ng build",
         "fe:watch": "ng build --watch --configuration development",
         "fe:test": "ng test",
+        "fe:lint": "biome check",
         "dev": "CARGO_TARGET_DIR=target tauri dev",
         "build": "CARGO_TARGET_DIR=target tauri build"
-    },
-    "prettier": {
-        "printWidth": 100,
-        "singleQuote": true,
-        "overrides": [
-            {
-                "files": "*.html",
-                "options": {
-                    "parser": "angular"
-                }
-            }
-        ]
     },
     "engines": {
         "node": "24.5.0",
@@ -47,6 +36,10 @@
         "@angular/build": "20.2.1",
         "@angular/cli": "20.2.1",
         "@angular/compiler-cli": "20.2.0",
+        "@biomejs/biome": "2.2.6",
+        "@commitlint/cli": "^20.1.0",
+        "@commitlint/config-conventional": "^20.0.0",
+        "@commitlint/types": "^20.0.0",
         "@tailwindcss/postcss": "^4.1.12",
         "@tauri-apps/cli": "^2.8.3",
         "@types/jasmine": "5.1.0",
@@ -57,6 +50,7 @@
         "karma-coverage": "2.2.0",
         "karma-jasmine": "5.1.0",
         "karma-jasmine-html-reporter": "2.1.0",
+        "lefthook": "^1.13.6",
         "postcss": "^8.5.6",
         "tailwindcss": "^4.1.12",
         "typescript": "5.9.2"

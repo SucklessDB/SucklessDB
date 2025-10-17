@@ -1,0 +1,69 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+    "vcs": {
+        "enabled": false,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "files": {
+        "ignoreUnknown": false,
+        "includes": ["src/**/*"]
+    },
+    "formatter": {
+        "enabled": true,
+        "useEditorconfig": true,
+        "lineWidth": 120,
+        "expand": null
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "suspicious": {
+                "useIterableCallbackReturn": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single",
+            "arrowParentheses": "asNeeded"
+        }
+    },
+    "html": {
+        "parser": {
+            "interpolation": true
+        },
+        "formatter": {
+            "selfCloseVoidElements": "always"
+        }
+    },
+    "css": {
+        "linter": {
+            "enabled": true
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["src/styles.css"],
+            "linter": {
+                "rules": {
+                    "correctness": {
+                        "noUnknownProperty": "off"
+                    },
+                    "suspicious": {
+                        "noUnknownAtRules": "off"
+                    }
+                }
+            }
+        }
+    ]
+}
