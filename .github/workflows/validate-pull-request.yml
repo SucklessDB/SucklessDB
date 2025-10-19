@@ -1,4 +1,4 @@
-name: validate-pull-request-title
+name: PR
 
 on:
     pull_request:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
     validator:
-        name: validate-pull-request-title
+        name: Validate title
         runs-on: ubuntu-latest
         steps:
             - name: validate pull request title
