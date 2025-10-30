@@ -15,7 +15,7 @@
         "node": "24.5.0",
         "npm": "please-use-pnpm"
     },
-    "packageManager": "pnpm@10.18.0+sha512.e804f889f1cecc40d572db084eec3e4881739f8dec69c0ff10d2d1beff9a4e309383ba27b5b750059d7f4c149535b6cd0d2cb1ed3aeb739239a4284a68f40cfa",
+    "packageManager": "pnpm@10.18.3+sha512.bbd16e6d7286fd7e01f6b3c0b3c932cda2965c06a908328f74663f10a9aea51f1129eea615134bf992831b009eabe167ecb7008b597f40ff9bc75946aadfb08d",
     "private": false,
     "dependencies": {
         "@angular/common": "20.2.0",
@@ -24,8 +24,8 @@
         "@angular/forms": "20.2.0",
         "@angular/platform-browser": "20.2.0",
         "@angular/router": "20.2.0",
-        "@ng-icons/core": "^32.1.0",
-        "@ng-icons/tabler-icons": "^32.1.0",
+        "@ng-icons/core": "^32.2.0",
+        "@ng-icons/tabler-icons": "^32.2.0",
         "@tauri-apps/api": "^2.8.0",
         "@tauri-apps/plugin-store": "~2.4.0",
         "rxjs": "7.8.0",
@@ -40,10 +40,10 @@
         "@commitlint/cli": "^20.1.0",
         "@commitlint/config-conventional": "^20.0.0",
         "@commitlint/types": "^20.0.0",
-        "@tailwindcss/postcss": "^4.1.12",
-        "@tauri-apps/cli": "^2.8.3",
+        "@tailwindcss/postcss": "^4.1.14",
+        "@tauri-apps/cli": "^2.8.4",
         "@types/jasmine": "5.1.0",
-        "daisyui": "^5.0.54",
+        "daisyui": "^5.3.7",
         "jasmine-core": "5.9.0",
         "karma": "6.4.0",
         "karma-chrome-launcher": "3.2.0",
@@ -52,7 +52,7 @@
         "karma-jasmine-html-reporter": "2.1.0",
         "lefthook": "^1.13.6",
         "postcss": "^8.5.6",
-        "tailwindcss": "^4.1.12",
+        "tailwindcss": "^4.1.14",
         "typescript": "5.9.2"
     }
 }
