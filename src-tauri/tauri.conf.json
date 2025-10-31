@@ -13,6 +13,7 @@
         "windows": [
             {
                 "title": "SucklessDB",
+                "url": "/connections",
                 "width": 1200,
                 "height": 900,
                 "minWidth": 900,
