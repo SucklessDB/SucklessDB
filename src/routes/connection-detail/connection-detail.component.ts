@@ -43,4 +43,8 @@ export class ConnectionDetailComponent {
             await this.connectionService.updateConnection(connectionId, connection);
         }
     }
+
+    public async connect(connection: DatabaseModel) {
+        await this.saveConnection(connection);
+    }
 }

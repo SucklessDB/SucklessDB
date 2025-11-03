@@ -3,7 +3,9 @@
         <connection-form #form [connection]="(connection$ | async) || undefined"></connection-form>
 
         <div class="flex justify-end gap-2">
-            <button class="btn btn-primary" (click)="saveConnection(form.value)" [disabled]="!form.isFormValid()">Save</button>
+            <button class="btn btn-secondary" (click)="saveConnection(form.value)" [disabled]="!form.isFormValid()">Save</button>
+
+            <button class="btn btn-primary" [disabled]="!form.isFormValid()">Connect</button>
         </div>
     </div>
 </div>
